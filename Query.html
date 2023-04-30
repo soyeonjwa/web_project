@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Gaegu&display=swap" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="Query.css">
+    <script>
+    $(document).ready(function(){
+      submitFunc();
+    });
+    function submitFunc(){
+      var sel=document.getElementById("where");
+      var str=sel.options[sel.selectedIndex].value;
+      $.ajax({
+        type : 'POST',
+        url : 'http://cspro.sogang.ac.kr/~cse20181354/cgi-bin/Search.php',
+        data :{
+          'query':str
+        },
+        error : function(result){
+          alert("통신 실패");
+        },
+        success : function(result){
+          var cafe_str="";
+          var eat_str="";
+          var activity_str="";
+
+          $.each(result.first,function(key,value){
+            if(key=="cafe_name"||key=="cafe_address"||key=="cafe_explain"||key=="cafe_grade"||key=="img_url"){
+              cafe_str+=value;
+              cafe_str+="|";
+            }
+            else if(key=="eat_name"||key=="eat_address"||key=="eat_explain"||key=="eat_grade"||key=="img_url2"){
+              eat_str+=value;
+              eat_str+="|";
+            }
+            else if(key=="activity_name"||key=="activity_address"||key=="activity_explain"||key=="img_url3"){
+              activity_str+=value;
+              activity_str+="|"
+            }
+
+          });
+          $("#info1_cafe").val(cafe_str);
+          $("#info1_eat").val(eat_str);
+          $("#info1_activity").val(activity_str);
+
+          cafe_str="";
+          eat_str="";
+          activity_str="";
+          $.each(result.second,function(key,value){
+            if(key=="cafe_name"||key=="cafe_address"||key=="cafe_explain"||key=="cafe_grade"||key=="img_url"){
+              cafe_str+=value;
+              cafe_str+="|";
+            }
+            else if(key=="eat_name"||key=="eat_address"||key=="eat_explain"||key=="eat_grade"||key=="img_url2"){
+              eat_str+=value;
+              eat_str+="|";
+            }
+            else if(key=="activity_name"||key=="activity_address"||key=="activity_explain"||key=="img_url3"){
+              activity_str+=value;
+              activity_str+="|"
+            }
+
+          });
+          $("#info2_cafe").val(cafe_str);
+          $("#info2_eat").val(eat_str);
+          $("#info2_activity").val(activity_str);
+
+          cafe_str="";
+          eat_str="";
+          activity_str="";
+          $.each(result.third,function(key,value){
+            if(key=="cafe_name"||key=="cafe_address"||key=="cafe_explain"||key=="cafe_grade"||key=="img_url"){
+              cafe_str+=value;
+              cafe_str+="|";
+            }
+            else if(key=="eat_name"||key=="eat_address"||key=="eat_explain"||key=="eat_grade"||key=="img_url2"){
+              eat_str+=value;
+              eat_str+="|";
+            }
+            else if(key=="activity_name"||key=="activity_address"||key=="activity_explain"||key=="img_url3"){
+              activity_str+=value;
+              activity_str+="|"
+            }
+
+          });
+          $("#info3_cafe").val(cafe_str);
+          $("#info3_eat").val(eat_str);
+          $("#info3_activity").val(activity_str);
+        },
+
+      });
+    }
+    </script>
+  </head>
+  <body>
+    <form method="POST" action="http://cspro.sogang.ac.kr/~cse20181354/cgi-bin/server.php">
+      <H1 id="dwm">date <span>With ME.<span></H1>
+
+      <select id="where" onchange="submitFunc()" name="where">
+        <option value="HongDae" selected> 홍대입구역 </option>
+        <option value="HyeHwa">  혜화역 </option>
+        <option value="Sinchon"> 신촌역 </option>
+        <option value="GangNam"> 강남역 </option>
+        <option value="GunDae"> 건대역 </option>
+        <option value="MyungDong"> 명동역 </option>
+        <option value="JongRo"> 종로역 </option>
+        <option value="WangSimNi"> 왕십리역 </option>
+        <option value="ITaeWon"> 이태원역 </option>
+      </select>
+
+      <!--순서: 이름|주소|평점|설명|img-->
+      <input type="hidden" name="info1_cafe" id="info1_cafe" ></input>
+      <input type="hidden" name="info1_eat" id="info1_eat"></input>
+      <input type="hidden" name="info1_activity" id="info1_activity" ></input>
+
+      <input type="hidden" name="info2_cafe" id="info2_cafe" ></input>
+      <input type="hidden" name="info2_eat" id="info2_eat" ></input>
+      <input type="hidden" name="info2_activity" id="info2_activity" ></input>
+
+      <input type="hidden" name="info3_cafe" id="info3_cafe" ></input>
+      <input type="hidden" name="info3_eat" id="info3_eat" ></input>
+      <input type="hidden" name="info3_activity" id="info3_activity" ></input>
+
+     <INPUT TYPE="submit" VALUE="✓">
+      <p id="main">선택하신 역의 데이트 코스를 추천해드려요!</p>
+      <p id="sub"> 데이트 코스는 단거리 이동과 높은 평점을 위주로 구성되었습니다.</p>
+    </form>
+  </body>
+
+</html>

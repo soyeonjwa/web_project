@@ -1,0 +1,62 @@
+body{
+    font-family: 'Cute Font', cursive;
+    font-family: 'Gaegu', cursive;
+  }
+  h1{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:77.6%;
+     font-size: 60px;
+     text-align: center;
+     letter-spacing: 1px;
+  }
+
+  #main{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom: 67%;
+      font-size: 18px;
+      text-align: center;
+  }
+  #sub{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom: 64%;
+    font-size: 15px;
+    text-align: center;
+  }
+  input[type=submit]{
+    overflow:auto;
+    margin: auto;
+    position:absolute;
+    bottom:76%;
+    right:20%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height:3.5%;
+  }
+  select {
+      font-size: 20px;
+     overflow: auto;
+      margin: auto;
+      position: absolute;
+      left: 0;
+      bottom: 75%;
+      right: 0;
+
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      display: inline-block;
+      width:50%;
+      height: 6%;
+      font-family: 'Cute Font', cursive;
+      font-family: 'Gaegu', cursive;
+
+  }
+  span{
+    color:pink;
+  }
